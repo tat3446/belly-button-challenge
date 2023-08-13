@@ -7,52 +7,30 @@ const bellyb = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classro
   // Fetch the JSON data and console log it
   d3.json(bellyb).then(function(data) {
     getData(data.names);
-    console.log(data);
-
+    console.log(data.names);
   });
 
 
-// // On change to the DOM, call getData()
-d3.selectAll("#selDataset").on("change", getData);
-
 // Function called by DOM changes to select person
 function getData(names) {
+
   // Select dropdown
-  let dropdownMenu = d3.select("#selDataset");
+  console.log(names[0]);
+
+  let dropdownMenu = d3.select("#selDataset"); 
   // For loop to go through all names
-  for (let i = 0; i < names.length; i++) {
-    let selIndiv = dropdownMenu.append("choice");
-    selIndiv.text(`${names[i]}`);
-    console.log(dropdownMenu);
+  for (let i = 0; i < names.length;i++) {
+    dropdownMenu.append("option")
+    .text(names[i])
+    .property("value", names[i]);
+    // console.log(dropdownMenu);
   };
+
+
 };
 
-//   };
-//   // Initialize an empty array and x and y for the individual's data
-//   // let data = [];
-//   // let x = [];
-//   // let y = [];
-  
 // // On change to the DOM, call getData()
 // d3.selectAll("#selDataset").on("change", getData);
-
-// }
-// // init();
-// }
-// Create array of just one id sample for test
-// let test = {object.names[0]}
-//   // metadata: {
-//   //   "ethnicity": "Caucasian", 
-//   //   "gender": "F", 
-//   //   "age": 24.0, 
-//   //   "location": "Beaufort/NC", 
-//   //   "bbtype": "I", 
-//   //   "wfreq": 2.0,
-//   // samples: {
-//   //   id1: id[0],
-//   //   otu_ids: otu_ids[0],
-//   //   otu_labels: otu_labels[0],
-//   // },
 
 
 // console.log(test);
@@ -88,14 +66,14 @@ function getData(names) {
 // };
 
 // // Render the plot to the div tag with id "plot"
-Plotly.newPlot("plot", traceData, layout);
+// Plotly.newPlot("plot", traceData, layout);
 
 // Call function to update the chart
-updatePlotly(data);
+//updatePlotly(data);
 
 // Update the restyled plot's values
-function updatePlotly(newdata) {
-  Plotly.restyle("plot", "values", [newdata]);
-}
+// function updatePlotly(newdata) {
+//   Plotly.restyle("plot", "values", [newdata]);
+// }
 
-init();
+//init();
