@@ -9,6 +9,7 @@ d3.json(bellyb).then(function (data) {
   buildMetaData(data.names[0]);
 });
 
+// Function to display metadata
 function buildMetaData(value) {
   d3.json(bellyb).then(function (data) {
 
@@ -25,8 +26,6 @@ function buildMetaData(value) {
     });
   })
 }
-
-
 
 
 // Function called by DOM changes to select person
@@ -49,10 +48,11 @@ function optionChanged(id) {
   buildMetaData(id)
 }
 
+// Function called to build charts
 function buildCharts(value) {
   d3.json(bellyb).then(function (data) {
 
-
+    // Building bar chart
     // Set variables
     let samples = data.samples;
     let resultArray = samples.filter(sampleObj => sampleObj.id == value);
@@ -74,14 +74,15 @@ function buildCharts(value) {
     }];
 
     let layout1 = {
-      title: "Top 10 Bacteria Cultures Found",
+      title: "Top 10 OTUs for Selected Individual",
       margin: { t: 30, l: 150 }
     };
 
     Plotly.newPlot("bar", trace1, layout1);
 
+    // Building bubble chart
     let bubbleLayout = {
-      title: "Bacteria Cultures Per Sample",
+      title: "Sample Culture with Identified Bacteria",
       margin: { t: 0 },
       hovermode: "closest",
       xaxis: { title: "OTU ID" },
@@ -105,4 +106,5 @@ function buildCharts(value) {
     Plotly.newPlot("bubble", bubbleData, bubbleLayout);
 
   })
+
 };
